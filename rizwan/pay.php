@@ -1,4 +1,53 @@
-<!DOCTYPE html>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $fullname = $_POST['fullname'];
+    $email = $_POST['email'];
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $country = $_POST['country'];
+    $cardname = $_POST['cardname'];
+    $cardnumber = $_POST['cardnumber'];
+    $expiry = $_POST['expiry'];
+    $cvv = $_POST['cvv'];
+   
+    
+    // Connecting to the Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "ATLAS";
+
+    // Create a connection
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    // Die if connection was not successful
+    if (!$conn){
+        die("Sorry we failed to connect: ". mysqli_connect_error());
+    }
+    else{ 
+        // Submit these to the database
+        // Sql query to be executed 
+        $sql = "INSERT INTO pay (fullname, email, address, city, country, cardname, cardnumber,expiry, cvv) VALUES ('$fullname', '$email', '$address', '$city', '$country', '$cardname', '$cardnumber', '$expiry', '$cvv')";
+        $result = mysqli_query($conn, $sql);
+
+        if($result){
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Your booking has been submitted successfully!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>';
+        }
+        else{
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> We are facing some technical issue and your booking was not submitted successfully! We regret the inconvenience caused!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>';
+        }
+    }
+}
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +55,7 @@
     <title>Atlas Tripster | Pay</title>
     <link rel="stylesheet" href="pay.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="BookingStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://kit.fontawesome.com/476f5c0c88.js" crossorigin="anonymous"></script>
 </head>
@@ -22,7 +72,7 @@
             </div>
         </nav>
     <div class="container">
-        <form action="">
+        <form action="pay.php" method="post">
             <div class="row">
                 <div class="col">
                     <h3 class="title">Information</h3>
@@ -44,8 +94,8 @@
                         <input type="text" id="city" name="city" placeholder="Lahore">
                     </div>
                     <div class="inputbox">
-                        <span>ZIP Code</span>
-                        <input type="text" id="zipcode" name="zipcode" placeholder="123 456">
+                        <span>Country</span>
+                        <input type="text" id="country" name="country" placeholder="France">
                     </div>
                 </div>
 
@@ -74,6 +124,7 @@
                     </div>
                 </div>
             </div>
+            <button type="submit" class="submit-btn">Submit</button>
             <input type="submit" value="Proceed" class="submit-btn">
         </form>
     </div>

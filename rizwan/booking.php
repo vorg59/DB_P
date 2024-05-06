@@ -1,4 +1,67 @@
-﻿<!DOCTYPE html>
+﻿<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $destination = $_POST['destination'];
+    $Ddate = $_POST['Ddate'];
+    $Rdate = $_POST['Rdate'];
+    $person = $_POST['person'];
+    $please = $_POST['please'];
+   
+    if ($please === 'economy') {
+        $price = 100;
+    } elseif ($please === 'gold') {
+        $price = 150;
+    } else {
+        // Handle invalid class selection
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> Invalid class selection.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>';
+        exit; // Stop further execution
+    }
+    
+    // Connecting to the Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "ATLAS";
+
+    // Create a connection
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    // Die if connection was not successful
+    if (!$conn){
+        die("Sorry we failed to connect: ". mysqli_connect_error());
+    }
+    else{ 
+        // Submit these to the database
+        // Sql query to be executed 
+        $sql = "INSERT INTO booking_info (name, phone, email, destination, Ddate, Rdate, person, please, price) VALUES ('$name', '$phone', '$email', '$destination', '$Ddate', '$Rdate', '$person', '$please', '$price')";
+        $result = mysqli_query($conn, $sql);
+
+        if($result){
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Your booking has been submitted successfully!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>';
+        }
+        else{
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> We are facing some technical issue and your booking was not submitted successfully! We regret the inconvenience caused!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>';
+        }
+    }
+}
+?>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -27,15 +90,18 @@
 <div class="backgrnd">
     <div class="booking-form">
         <h2>Online Booking</h2>
-        <form action="http://localhost:3000/submit" method="post">
+        <form action="booking.php" method="post">
             <label for="Name">Name</label>
-            <input type="text" name="Name" id="person-name" required>
+            <input type="text" name="name" id="name" required>
 
             <label for="Email">Email</label>
-            <input type="text" name="Email" id="person-email" required>
+            <input type="text" name="email" id="email" required>
+
+            <label for="Email">Phone</label>
+            <input type="text" name="phone" id="phone" required>
 
             <label for="Destination">Destination</label>
-            <select name="class" id="class" required>
+            <select name="destination" id="destination" required>
                 <option value="select">Select</option>
                 <option value="Paris">Paris</option>
                 <option value="London">London</option>
@@ -49,22 +115,17 @@
             </select>
 
             <label for="Departure-date">Departure</label>
-            <input type="date" class="date-in" name="Departure-date" id="DDate" required>
+            <input type="date" class="date-in" name="Ddate" id="Ddate" required>
 
             <label for="Return-date">Return</label>
-            <input type="date" class="date-in" name="Return-date" id="RDate" required>
+            <input type="date" class="date-in" name="Rdate" id="RDate" required>
 
             <label for="persons">Passengers</label>
-            <input type="number" name="persons" id="person-count" required>
+            <input type="number" name="person" id="person" required>
             
             <label for="class">Class</label>
-            <select name="class" id="class" required>
-                <option value="select">Select</option>
-                <option value="Economy">Economy</option>
-                <option value="Business">Silver</option>
-                <option value="Economy">Gold</option>
-                <option value="Business">Platinum</option>
-            </select>
+            <input type="text" name="please" id="please" required>
+            <button type="submit" class="submit">Submit</button>
             <a href="pay.php">Proceed</a>
 
         </form>
