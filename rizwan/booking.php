@@ -7,12 +7,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $Ddate = $_POST['Ddate'];
     $Rdate = $_POST['Rdate'];
     $person = $_POST['person'];
-    $please = $_POST['please'];
+    $t_class = $_POST['t_class'];
    
-    if ($please === 'economy') {
-        $price = 100;
-    } elseif ($please === 'gold') {
-        $price = 150;
+    if ($t_class === 'economy') {
+        $price = 2000;
+    } 
+    elseif ($t_class === 'silver') {
+        $price = 10000;
+    }
+    elseif ($t_class === 'gold') {
+        $price = 10000;
+    }elseif ($t_class === 'platinum') {
+        $price = 10000;
     } else {
         // Handle invalid class selection
         echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -28,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $database = "ATLAS";
+    $database = "atlas";
 
     // Create a connection
     $conn = mysqli_connect($servername, $username, $password, $database);
@@ -39,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     else{ 
         // Submit these to the database
         // Sql query to be executed 
-        $sql = "INSERT INTO booking_info (name, phone, email, destination, Ddate, Rdate, person, please, price) VALUES ('$name', '$phone', '$email', '$destination', '$Ddate', '$Rdate', '$person', '$please', '$price')";
+        $sql = "INSERT INTO booking_info (name, phone, email, destination, Ddate, Rdate, person, t_class, price) VALUES ('$name', '$phone', '$email', '$destination', '$Ddate', '$Rdate', '$person', '$t_class', '$price')";
         $result = mysqli_query($conn, $sql);
 
         if($result){
@@ -124,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             <input type="number" name="person" id="person" required>
             
             <label for="class">Class</label>
-            <input type="text" name="please" id="please" required>
+            <input type="text" name="t_class" id="t_class" required>
             <button type="submit" class="submit">Submit</button>
             <a href="pay.php">Proceed</a>
 
