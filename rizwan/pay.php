@@ -126,6 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                     </div>
                 </div>
             </div>
+            <button type="submit" class="submit-btn">Submit</button>
             <button type="submit" class="submit-btn"><a href="check.php">Chech out</a></button>
         </form>
     </div>
