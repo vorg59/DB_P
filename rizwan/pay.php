@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $database = "ATLAS";
+    $database = "atlas";
 
     // Create a connection
     $conn = mysqli_connect($servername, $username, $password, $database);
@@ -53,9 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atlas Tripster | Pay</title>
-    <link rel="stylesheet" href="pay.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="BookingStyle.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pay.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://kit.fontawesome.com/476f5c0c88.js" crossorigin="anonymous"></script>
 </head>
@@ -124,8 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                     </div>
                 </div>
             </div>
-            <button type="submit" class="submit-btn">Submit</button>
-            <input type="submit" value="Proceed" class="submit-btn">
+            <button type="submit" class="submit-btn"><a href="index.php">Confirm</a></button>
         </form>
     </div>
     <footer>
@@ -161,5 +160,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         </div>
         <hr><p class="copy"></p>
     </footer>
+    <script>
+  function redirectToConfirmPage() {
+    window.location.href = "confirm.php";
+  }
+</script>
 </body>
 </html>

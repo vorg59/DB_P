@@ -1,24 +1,25 @@
 ﻿<?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
+    $Name = $_POST['Name'];
+    $Email = $_POST['Email'];
     $phone = $_POST['phone'];
     $destination = $_POST['destination'];
-    $Ddate = $_POST['Ddate'];
-    $Rdate = $_POST['Rdate'];
-    $person = $_POST['person'];
-    $t_class = $_POST['t_class'];
+    $DDate = $_POST['DDate'];
+    $RDate = $_POST['RDate'];
+    $persons = $_POST['persons'];
+    $please = $_POST['please'];
+    $price = $_POST['price'];
    
-    if ($t_class === 'economy') {
+    if ($please === 'economy') {
         $price = 2000;
     } 
-    elseif ($t_class === 'silver') {
+    elseif ($please === 'silver') {
         $price = 10000;
     }
-    elseif ($t_class === 'gold') {
+    elseif ($please === 'gold') {
         $price = 10000;
-    }elseif ($t_class === 'platinum') {
-        $price = 10000;
+    }elseif ($please === 'platinum') {
+        $price = 25000;
     } else {
         // Handle invalid class selection
         echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -45,16 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     else{ 
         // Submit these to the database
         // Sql query to be executed 
-        $sql = "INSERT INTO booking_info (name, phone, email, destination, Ddate, Rdate, person, t_class, price) VALUES ('$name', '$phone', '$email', '$destination', '$Ddate', '$Rdate', '$person', '$t_class', '$price')";
+        $sql = "INSERT INTO booking_info (Name, phone, Email, destination, DDate, RDate, persons, please, price) VALUES ('$Name', '$phone', '$Email', '$destination', '$DDate', '$RDate', '$persons', '$please', '$price')";
         $result = mysqli_query($conn, $sql);
 
         if($result){
+            
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> Your booking has been submitted successfully!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">×</span>
             </button>
             </div>';
+            $booking_id = mysqli_insert_id($conn); // Get the ID of the last inserted row
+            header("Location: confirm.php?id=$booking_id");
+            exit;
         }
         else{
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -98,10 +103,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         <h2>Online Booking</h2>
         <form action="booking.php" method="post">
             <label for="Name">Name</label>
-            <input type="text" name="name" id="name" required>
+            <input type="text" name="Name" id="Name" required>
 
             <label for="Email">Email</label>
-            <input type="text" name="email" id="email" required>
+            <input type="text" name="Email" id="Email" required>
 
             <label for="Email">Phone</label>
             <input type="text" name="phone" id="phone" required>
@@ -121,16 +126,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             </select>
 
             <label for="Departure-date">Departure</label>
-            <input type="date" class="date-in" name="Ddate" id="Ddate" required>
+            <input type="date" class="date-in" name="DDate" id="DDate" required>
 
             <label for="Return-date">Return</label>
-            <input type="date" class="date-in" name="Rdate" id="RDate" required>
+            <input type="date" class="date-in" name="RDate" id="RDate" required>
 
-            <label for="persons">Passengers</label>
-            <input type="number" name="person" id="person" required>
+            <label for="personss">Passengers</label>
+            <input type="number" name="persons" id="persons" required>
             
-            <label for="class">Class</label>
-            <input type="text" name="t_class" id="t_class" required>
+            <label for="Name">Name</label>
+            <input type="text" name="please" id="please" required>
             <button type="submit" class="submit">Submit</button>
             <a href="pay.php">Proceed</a>
 

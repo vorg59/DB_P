@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <input type="email" class="inputfield" id="email" name="email" placeholder="Email id" required>
                 <input type="password" class="inputfield" id="password" name="password" placeholder="Password" required>
                 <input type="checkbox" class="check" id="terms" name="terms" required><label for="terms">Agree to terms and conditions</label>
-                <button type="submit" class="submit">Sign up</button>
+                <button type="submit" class="submit" on-click>Sign up</button>
             </form>
         </div>
     </div>
