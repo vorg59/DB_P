@@ -2,7 +2,7 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $user_password = $_POST['user_password'];
 
     // Connecting to the Database
     $servername = "localhost";
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     else{ 
         // Submit these to the database
         // Sql query to be executed 
-        $sql = "INSERT INTO signup (name, email, password ) VALUES ('$name', '$email', '$password')";
+        $sql = "INSERT INTO signup (name, email, user_password ) VALUES ('$name', '$email', '$user_password')";
         $result = mysqli_query($conn, $sql);
 
         if($result){
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             <form id="signup" class="inputgroup" action="register.php" method="POST">
                 <input type="text" class="inputfield" id="name" name="name" placeholder="User name" required>
                 <input type="email" class="inputfield" id="email" name="email" placeholder="Email id" required>
-                <input type="password" class="inputfield" id="password" name="password" placeholder="Password" required>
+                <input type="password" class="inputfield" id="user_password" name="user_password" placeholder="Password" required>
                 <input type="checkbox" class="check" id="terms" name="terms" required><label for="terms">Agree to terms and conditions</label>
                 <button type="submit" class="submit" on-click>Sign up</button>
             </form>

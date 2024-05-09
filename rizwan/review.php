@@ -1,3 +1,46 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $email = $_POST['email'];
+    $rating = $_POST['rating'];
+    $review = $_POST['review'];
+
+    // Connecting to the Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "atlas";
+
+    // Create a connection
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    // Die if connection was not successful
+    if (!$conn){
+        die("Sorry we failed to connect: ". mysqli_connect_error());
+    }
+    else{ 
+        // Submit the review to the database
+        $sql = "INSERT INTO reviews (rating,email, review) VALUES ('$rating','$email', '$review')";
+        $result = mysqli_query($conn, $sql);
+
+        if($result){
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Your review has been submitted successfully!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>';
+        }
+        else{
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> We are facing some technical issue and your review was not submitted successfully! We regret the inconvenience caused!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>';
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -75,24 +118,24 @@
               </div>
             </div>
           </div>
-          
         </div>
         <div class="container__right">
           <div class="textarea">
-            <h4>Rate us</h4>
-            <div class="star-widget">
-              <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
-              <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
-              <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
-              <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
-              <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
-            </div>
-          <div>
-            <textarea placeholder="Describe your experience.."></textarea>
-          </div>
-          <div class="btnn">
-            <button type="submit">Submit</button>
-          </div> 
+          <form action="review.php" method="POST">
+    <h4>Rate us</h4>
+    <div class="star-widget">
+        <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
+        <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
+        <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
+        <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
+        <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
+    </div>
+    <input type="email" class="inputfield" id="email" name="email" placeholder="Email id" required>
+    <textarea name="review" placeholder="Describe your experience.." required></textarea>
+    <button type="submit">Submit</button>
+    <button type="submit"><a href="morereview.php"> See More</a></button>
+</form>
+
         </div>
       </div>
     </section> 

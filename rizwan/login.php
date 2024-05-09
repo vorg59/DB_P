@@ -1,6 +1,6 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $username = $_POST['user-name'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
     // Connecting to the Database
@@ -12,27 +12,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     // Create a connection
     $conn = mysqli_connect($servername, $db_username, $db_password, $database);
     // Check connection
-    if (!$conn){
+    if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
-    }
-    else{ 
+    } else {
         // Check if user exists in the database
-        $sql = "SELECT * FROM signup WHERE name='$username' AND password='$password'";
+        $sql = "SELECT * FROM signup WHERE name='$username'";
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
 
-        if($count == 1){
-            // Redirect user to index.php
-            header("Location: index.php");
+        if ($count == 1) {
+            // User exists, check password
+            $row = mysqli_fetch_assoc($result);
+            if ($row['user_password'] == $password) {
+                // Password is correct, redirect to index.php
+                header("Location: index.php");
+                exit();
+            } else {
+                // Password is incorrect, display alert
+                echo '<script>alert("Invalid password!");</script>';
+            }
+        } else {
+            // User does not exist, redirect to register.php
+            echo '<script>alert("Invalid credentials!");</script>';
+            header("Location: register.php");
             exit();
-        }
-        else{
-            // Display alert if login credentials are incorrect
-            echo '<script>alert("Invalid username or password!");</script>';
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <a href="https://www.apple.com/"><i class="fab fa-apple"></i></a>
                 <a href="https://www.nu.edu.pk/"><i class="fab fa-google"></i></a>
             </div>
-            <form id="login" class="inputgroup">
+            <form id="login" class="inputgroup" action="login.php" method="POST">
                 <input type="text" class="inputfield" id="username" name="username" placeholder="User name" required>
                 <input type="password" class="inputfield" id="password" name="password" placeholder="Password" required>
                 <input type="checkbox" class="check" id="remember-me"><label for="remember-me">Remember me</label>
