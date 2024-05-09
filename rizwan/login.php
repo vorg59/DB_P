@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form id="login" class="inputgroup" action="login.php" method="POST">
                 <input type="text" class="inputfield" id="username" name="username" placeholder="User name" required>
                 <input type="password" class="inputfield" id="password" name="password" placeholder="Password" required>
-                <input type="checkbox" class="check" id="remember-me"><label for="remember-me">Remember me</label>
+                <input type="checkbox" class="check" id="remember-me" required><label for="remember-me">Remember me</label>
                 <button type="submit" class="submit">Login</button>
             </form>
         </div>

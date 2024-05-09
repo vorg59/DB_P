@@ -134,10 +134,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             <label for="personss">Passengers</label>
             <input type="number" name="persons" id="persons" required>
             
-            <label for="Name">Name</label>
+            <label for="Name">Class</label>
             <input type="text" name="please" id="please" required>
             <button type="submit" class="submit">Submit</button>
-            <a href="pay.php">Proceed</a>
+            
 
         </form>
     </div>

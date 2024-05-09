@@ -48,6 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+    .container__right button a {
+        color: white; /* Set text color to white */
+        text-decoration: none; /* Remove text decoration */
+    }
+</style>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="review.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -133,9 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <input type="email" class="inputfield" id="email" name="email" placeholder="Email id" required>
     <textarea name="review" placeholder="Describe your experience.." required></textarea>
     <button type="submit">Submit</button>
-    <button type="submit"><a href="morereview.php"> See More</a></button>
 </form>
-
+<form action="morereview.php" method="GET"><button type="submit"> See More</button></form>
         </div>
       </div>
     </section> 

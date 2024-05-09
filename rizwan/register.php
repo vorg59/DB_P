@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $database = "ATLAS";
+    $database = "atlas";
 
     // Create a connection
     $conn = mysqli_connect($servername, $username, $password, $database);
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <input type="email" class="inputfield" id="email" name="email" placeholder="Email id" required>
                 <input type="password" class="inputfield" id="user_password" name="user_password" placeholder="Password" required>
                 <input type="checkbox" class="check" id="terms" name="terms" required><label for="terms">Agree to terms and conditions</label>
-                <button type="submit" class="submit" on-click>Sign up</button>
+                <button type="submit" class="submit"><a href="login.php">Sign up</a></button>
             </form>
         </div>
     </div>

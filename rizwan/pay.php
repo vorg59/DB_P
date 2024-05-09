@@ -53,16 +53,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atlas Tripster | Pay</title>
-    <link rel="stylesheet" href="BookingStyle.css">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="pay.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://kit.fontawesome.com/476f5c0c88.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
+<header>
         <nav>
-            <a href="index.html"><div class="brand"><h1 class="animate__heartBeat"><img src="logo2.png"></div></h1></a>
+            <a href="index.php"><div class="brand"><h1 class="animate__heartBeat"><img src="logo2.png"></div></h1></a>
             <div class="menu">
                 <a href="index.php">Home</a>
                 <a href="booking.php">Booking</a>
@@ -71,6 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <a href="wishlistwithlogin.php">Wishlist</a>
             </div>
         </nav>
+
+</header>
     <div class="container">
         <form action="pay.php" method="post">
             <div class="row">
@@ -79,23 +81,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                     <div class="inputbox">
                         <span>Full Name</span>
-                        <input type="text" id="fullname" name="fullname" placeholder="Fatima Waseem">
+                        <input type="text" id="fullname" name="fullname" placeholder="Fatima Waseem" required>
                     </div>
                     <div class="inputbox">
                         <span>Email</span>
-                        <input type="email" id="email" name="email" placeholder="fatima57@example.com">
+                        <input type="email" id="email" name="email" placeholder="fatima57@example.com" required>
                     </div>
                     <div class="inputbox">
                         <span>Address</span>
-                        <input type="text" id="address" name="address" placeholder="street - town ">
+                        <input type="text" id="address" name="address" placeholder="street - town " required>
                     </div>
                     <div class="inputbox">
                         <span>City</span>
-                        <input type="text" id="city" name="city" placeholder="Lahore">
+                        <input type="text" id="city" name="city" placeholder="Lahore" required>
                     </div>
                     <div class="inputbox">
                         <span>Country</span>
-                        <input type="text" id="country" name="country" placeholder="France">
+                        <input type="text" id="country" name="country" placeholder="France" required>
                     </div>
                 </div>
 
@@ -107,24 +109,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                     </div>
                     <div class="inputbox">
                         <span>Name on Card</span>
-                        <input type="text" id="cardname" name="cardname" placeholder="Miss. Fatima">
+                        <input type="text" id="cardname" name="cardname" placeholder="Miss. Fatima" required>
                     </div>
                     
                     <div class="inputbox">
                         <span>Card Number</span>
-                        <input type="number" id="cardnumber" name="cardnumber" placeholder="1111-2222-3333-4444">
+                        <input type="number" id="cardnumber" name="cardnumber" placeholder="1111-2222-3333-4444" required>
                     </div>
                     <div class="inputbox">
                         <span>Expiry</span>
-                        <input type="date" id="expiry" name="expiry" placeholder="Journey Start Date">
+                        <input type="date" id="expiry" name="expiry" placeholder="Journey Start Date" required>
                     </div>
                     <div class="inputbox">
                         <span>CVV</span>
-                        <input type="text" id="cvv" name="cvv" placeholder="1234">
+                        <input type="text" id="cvv" name="cvv" placeholder="1234" required>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="submit-btn"><a href="index.php">Confirm</a></button>
+            <button type="submit" class="submit-btn"><a href="check.php">Chech out</a></button>
         </form>
     </div>
     <footer>

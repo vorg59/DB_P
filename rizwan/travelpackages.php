@@ -6,6 +6,7 @@
   <title>ATLAS TRIPSTER | Packages</title>
   <link rel="stylesheet" href="packagesstyle.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="Bookingstyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://kit.fontawesome.com/476f5c0c88.js" crossorigin="anonymous"></script>
 </head>
@@ -89,7 +90,7 @@
             </div>
         </div>
         </div>
-
+        
         <div class="box">
             <div class="image">
                 <img src="t3.jpg" alt="">
@@ -114,7 +115,11 @@
 
     </div>
 </section>
+        
 <section class="hotels">
+        <div class="booking-form">
+            <h3>Book Here  <a href="booking.php">Booking</a></button></h3>
+        </div>
     <h3>Hotels</h3> <hr> <br>
     <div class="exclusives">
         <div>
